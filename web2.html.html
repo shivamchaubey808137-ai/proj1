@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neopolitan Pizza · Waghodia Road</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Font (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8f4f0;
+      color: #1a202c;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ----- HEADER / NAVBAR ----- */
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #f0e3d8;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #a63c1e;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .logo i {
+      color: #d45a2e;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4a3f38;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: #a63c1e;
+    }
+
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: #2d2d2d;
+      transition: 0.2s;
+      background: #f7f2ec;
+      padding: 0.5rem 0.9rem;
+      border-radius: 60px;
+      border: 1px solid #e7ddd2;
+    }
+
+    .cart-icon:hover {
+      background: #a63c1e;
+      color: white;
+      border-color: #a63c1e;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #e23744;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid white;
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #3d2b20 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      border-radius: 0 0 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=1200&h=400&fit=crop&crop=center');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      mix-blend-mode: overlay;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 700px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-content h1 span {
+      color: #f5b342;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #d9cdc2;
+      max-width: 500px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-stats span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.9rem;
+    }
+
+    .hero-stats i {
+      color: #ffd966;
+    }
+
+    /* ----- MENU SECTION ----- */
+    .menu-section {
+      padding: 1rem 0 3rem;
+    }
+
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .menu-header h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .menu-header p {
+      color: #6b5f53;
+      font-weight: 500;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid #f0e3d8;
+      transition: 0.25s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+      border-color: #dba67a;
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-bottom: 1px solid #f0e3d8;
+    }
+
+    .menu-card-body {
+      padding: 1.2rem 1.2rem 1.5rem;
+    }
+
+    .menu-card-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .menu-card-body .desc {
+      font-size: 0.85rem;
+      color: #6b5f53;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.2rem;
+    }
+
+    .menu-card-footer .price {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #1a202c;
+    }
+
+    .btn-add {
+      background: #a63c1e;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-add:hover {
+      background: #8f3319;
+      transform: scale(0.96);
+    }
+
+    .btn-add i {
+      font-size: 0.8rem;
+    }
+
+    /* ----- CART SIDEBAR (Overlay) ----- */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      max-width: 90vw;
+      height: 100vh;
+      background: white;
+      z-index: 101;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.06);
+      transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f0e3d8;
+      padding-bottom: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cart-header h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .cart-close {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #6b5f53;
+      transition: 0.2s;
+    }
+
+    .cart-close:hover {
+      color: #a63c1e;
+      transform: rotate(90deg);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-right: 0.3rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #faf6f1;
+      padding: 0.7rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid #f0e3d8;
+    }
+
+    .cart-item-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .cart-item-price {
+      font-size: 0.85rem;
+      color: #6b5f53;
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .cart-item-qty {
+      font-weight: 600;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .btn-qty {
+      background: white;
+      border: 1px solid #ddd0c4;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a202c;
+    }
+
+    .btn-qty:hover {
+      background: #a63c1e;
+      color: white;
+      border-color: #a63c1e;
+    }
+
+    .btn-qty.remove {
+      color: #e23744;
+    }
+
+    .btn-qty.remove:hover {
+      background: #e23744;
+      color: white;
+      border-color: #e23744;
+    }
+
+    .cart-footer {
+      border-top: 1px solid #f0e3d8;
+      padding-top: 1.2rem;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .btn-checkout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem;
+      border-radius: 60px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.15s;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .btn-checkout.swiggy {
+      background: #fc8019;
+      color: white;
+    }
+    .btn-checkout.swiggy:hover {
+      background: #e06e0f;
+    }
+
+    .btn-checkout.zomato {
+      background: #e23744;
+      color: white;
+    }
+    .btn-checkout.zomato:hover {
+      background: #c92a36;
+    }
+
+    .btn-checkout:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .empty-cart-msg {
+      text-align: center;
+      color: #6b5f53;
+      padding: 2rem 0;
+    }
+
+    /* ----- FOOTER ----- */
+    footer {
+      background: #1a1a1a;
+      color: #b0a69b;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-radius: 2rem 2rem 0 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-grid .brand {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .footer-grid .brand i {
+      color: #d45a2e;
+    }
+
+    .footer-grid .address {
+      max-width: 300px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-grid .address i {
+      color: #d45a2e;
+      margin-right: 0.4rem;
+    }
+
+    /* ----- responsive ----- */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .hero-stats {
+        flex-wrap: wrap;
+      }
+      .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      .cart-sidebar {
+        width: 100vw;
+        max-width: 100vw;
+        right: -110vw;
+        border-radius: 0;
+      }
+      .cart-sidebar.open {
+        right: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .menu-card img {
+        height: 130px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <i class="fas fa-pizza-slice"></i> Neopolitan
+        </div>
+        <ul class="nav-links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#info">Info</a></li>
+          <li><a href="tel:+919664953161"><i class="fas fa-phone"></i> Call</a></li>
+          <li>
+            <div class="cart-icon" id="cartIcon">
+              <i class="fas fa-shopping-bag"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Authentic <span>Neopolitan</span> Pizza</h1>
+      <p>Wood‑fired perfection, fresh ingredients, and that unmistakable chewy crust. Delivered hot to your door.</p>
+      <div class="hero-stats">
+        <span><i class="fas fa-star"></i> 4.6 (370+ reviews)</span>
+        <span><i class="fas fa-clock"></i> 11:00 – 23:00</span>
+        <span><i class="fas fa-venus-mars"></i> Women‑led</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="menu-header">
+        <div>
+          <h2>Our Pizzas 🍕</h2>
+          <p>Choose your favorite, add to cart, and order via Swiggy/Zomato</p>
+        </div>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+        <!-- Cards will be injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO / ADDRESS -->
+  <section id="info" style="padding: 1rem 0 2rem;">
+    <div class="container">
+      <div style="background: #faf6f1; border-radius: 2rem; padding: 1.5rem 2rem; border: 1px solid #f0e3d8; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+        <div>
+          <i class="fas fa-map-pin" style="color: #a63c1e; margin-right: 0.6rem;"></i>
+          <strong style="font-weight: 600;">GF 22, Arcade, Shivay palace hostel PG Aava county, opp. Sumandeep Vidhyapeeth, Waghodia, Gujarat 391760</strong>
+        </div>
+        <button onclick="window.open('https://maps.app.goo.gl/3BrD6Taa3Kvig7XQ7','_blank')" style="background: white; border: 1px solid #dacfc4; padding: 0.5rem 1.5rem; border-radius: 60px; font-weight: 600; cursor: pointer; color: #a63c1e;">
+          <i class="fas fa-map"></i> Get Directions
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART OVERLAY & SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-bag" style="color: #a63c1e;"></i> Your Order</h3>
+      <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- dynamic -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotalPrice">₹0</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-checkout swiggy" id="swiggyCheckout"><i class="fas fa-bolt"></i> Order via Swiggy</button>
+        <button class="btn-checkout zomato" id="zomatoCheckout"><i class="fas fa-utensils"></i> Order via Zomato</button>
+      </div>
+      <p style="font-size: 0.7rem; color: #7a6b5e; text-align: center; margin-top: 0.6rem;">You will be redirected to complete your order.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand"><i class="fas fa-pizza-slice"></i> Neopolitan Pizza</div>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">Waghodia Road · Vadodara</div>
+      </div>
+      <div class="address">
+        <i class="fas fa-location-dot"></i> GF 22, Arcade, Shivay palace hostel PG Aava county, opp. Sumandeep Vidhyapeeth, Waghodia, Gujarat 391760
+        <div style="margin-top: 0.5rem;"><i class="fas fa-phone"></i> +91 96649 53161</div>
+      </div>
+      <div style="text-align: right;">
+        <div>© 2026 Neopolitan Pizza</div>
+        <div style="font-size: 0.8rem; margin-top: 0.2rem;">Women‑led business</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // ---------- MENU DATA ----------
+      const menuItems = [
+        { id: 1, name: 'Margherita', desc: 'Classic tomato sauce, mozzarella, fresh basil.', price: 299, img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=250&fit=crop&crop=center' },
+        { id: 2, name: 'Pepperoni', desc: 'Loaded with pepperoni, mozzarella, and oregano.', price: 399, img: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&h=250&fit=crop&crop=center' },
+        { id: 3, name: 'Farmhouse', desc: 'Bell peppers, onions, mushrooms, sweet corn.', price: 349, img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=250&fit=crop&crop=center' },
+        { id: 4, name: 'Cheese Burst', desc: 'Extra mozzarella, cheddar, parmesan cheese melt.', price: 459, img: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400&h=250&fit=crop&crop=center' },
+        { id: 5, name: 'BBQ Chicken', desc: 'Tandoori chicken, BBQ sauce, red onions.', price: 429, img: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=250&fit=crop&crop=center' },
+        { id: 6, name: 'Veggie Supreme', desc: 'Zucchini, bell peppers, olives, mushrooms.', price: 379, img: 'https://images.unsplash.com/photo-1548369937-47519962c11a?w=400&h=250&fit=crop&crop=center' }
+      ];
+
+      // ---------- CART STATE ----------
+      let cart = [];
+
+      // DOM refs
+      const menuGrid = document.getElementById('menuGrid');
+      const cartItemsEl = document.getElementById('cartItems');
+      const cartTotalPrice = document.getElementById('cartTotalPrice');
+      const cartBadge = document.getElementById('cartBadge');
+      const cartIcon = document.getElementById('cartIcon');
+      const cartSidebar = document.getElementById('cartSidebar');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const cartClose = document.getElementById('cartClose');
+
+      // ---------- RENDER MENU ----------
+      function renderMenu() {
+        menuGrid.innerHTML = menuItems.map(item => `
+          <div class="menu-card">
+            <img src="${item.img}" alt="${item.name}" loading="lazy" />
+            <div class="menu-card-body">
+              <h3>${item.name}</h3>
+              <p class="desc">${item.desc}</p>
+              <div class="menu-card-footer">
+                <span class="price">₹${item.price}</span>
+                <button class="btn-add" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">
+                  <i class="fas fa-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        // Attach add-to-cart events
+        document.querySelectorAll('.btn-add').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const id = parseInt(this.dataset.id);
+            const name = this.dataset.name;
+            const price = parseInt(this.dataset.price);
+            addToCart(id, name, price);
+          });
+        });
+      }
+
+      // ---------- CART LOGIC ----------
+      function addToCart(id, name, price) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ id, name, price, qty: 1 });
+        }
+        updateCartUI();
+        // open cart briefly to show feedback
+        openCart();
+      }
+
+      function removeItem(id) {
+        const index = cart.findIndex(item => item.id === id);
+        if (index !== -1) {
+          if (cart[index].qty > 1) {
+            cart[index].qty -= 1;
+          } else {
+            cart.splice(index, 1);
+          }
+        }
+        updateCartUI();
+      }
+
+      function deleteItem(id) {
+        cart = cart.filter(item => item.id !== id);
+        updateCartUI();
+      }
+
+      function getTotal() {
+        return cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      }
+
+      function getTotalItems() {
+        return cart.reduce((sum, item) => sum + item.qty, 0);
+      }
+
+      function updateCartUI() {
+        // Badge
+        const count = getTotalItems();
+        cartBadge.textContent = count;
+        cartBadge.style.display = count > 0 ? 'flex' : 'none';
+
+        // Render cart items
+        if (cart.length === 0) {
+          cartItemsEl.innerHTML = `<div class="empty-cart-msg"><i class="fas fa-shopping-bag" style="font-size:2rem; color:#ddd0c4; margin-bottom:0.5rem; display:block;"></i> Your cart is empty.<br> <span style="font-size:0.85rem;">Add some delicious pizzas!</span></div>`;
+        } else {
+          cartItemsEl.innerHTML = cart.map(item => `
+            <div class="cart-item">
+              <div class="cart-item-info">
+                <span class="cart-item-name">${item.name}</span>
+                <span class="cart-item-price">₹${item.price} each</span>
+              </div>
+              <div class="cart-item-controls">
+                <button class="btn-qty" data-id="${item.id}" data-action="remove">−</button>
+                <span class="cart-item-qty">${item.qty}</span>
+                <button class="btn-qty" data-id="${item.id}" data-action="add">+</button>
+                <button class="btn-qty remove" data-id="${item.id}" data-action="delete"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          `).join('');
+
+          // Attach cart control events
+          document.querySelectorAll('.btn-qty').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              const id = parseInt(this.dataset.id);
+              const action = this.dataset.action;
+              if (action === 'add') {
+                const item = menuItems.find(i => i.id === id);
+                if (item) addToCart(item.id, item.name, item.price);
+              } else if (action === 'remove') {
+                removeItem(id);
+              } else if (action === 'delete') {
+                deleteItem(id);
+              }
+            });
+          });
+        }
+
+        // Update total
+        cartTotalPrice.textContent = `₹${getTotal()}`;
+
+        // Enable/disable checkout buttons
+        const hasItems = cart.length > 0;
+        document.getElementById('swiggyCheckout').disabled = !hasItems;
+        document.getElementById('zomatoCheckout').disabled = !hasItems;
+      }
+
+      // ---------- CART SIDEBAR TOGGLE ----------
+      function openCart() {
+        cartSidebar.classList.add('open');
+        cartOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCart() {
+        cartSidebar.classList.remove('open');
+        cartOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      cartIcon.addEventListener('click', openCart);
+      cartClose.addEventListener('click', closeCart);
+      cartOverlay.addEventListener('click', closeCart);
+
+      // ---------- CHECKOUT (Swiggy / Zomato) ----------
+      function redirectToDelivery(platform) {
+        if (cart.length === 0) return;
+        // use the same search URLs as before, ensuring the shop appears
+        const swiggyUrl = 'https://www.swiggy.com/search?query=Neopolitan%20Pizza%20Waghodia%20Road';
+        const zomatoUrl = 'https://www.zomato.com/search?q=Neopolitan%20Pizza%20Waghodia%20Road';
+        const url = platform === 'swiggy' ? swiggyUrl : zomatoUrl;
+        window.open(url, '_blank');
+        // optionally close cart
+        closeCart();
+      }
+
+      document.getElementById('swiggyCheckout').addEventListener('click', function() {
+        redirectToDelivery('swiggy');
+      });
+      document.getElementById('zomatoCheckout').addEventListener('click', function() {
+        redirectToDelivery('zomato');
+      });
+
+      // ---------- INIT ----------
+      renderMenu();
+      updateCartUI();
+
+      // close cart on ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeCart();
+      });
+
+    })();
+  </script>
+</body>
+</html>
