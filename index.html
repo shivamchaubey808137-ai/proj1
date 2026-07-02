@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neopolitan Pizza · Waghodia Road</title>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Google Font (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <i class="fas fa-pizza-slice"></i> Neopolitan
+        </div>
+        <ul class="nav-links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#info">Info</a></li>
+          <li><a href="tel:+919664953161"><i class="fas fa-phone"></i> Call</a></li>
+          <li>
+            <div class="cart-icon" id="cartIcon">
+              <i class="fas fa-shopping-bag"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Authentic <span>Neopolitan</span> Pizza</h1>
+      <p>Wood‑fired perfection, fresh ingredients, and that unmistakable chewy crust. Delivered hot to your door.</p>
+      <div class="hero-stats">
+        <span><i class="fas fa-star"></i> 4.6 (370+ reviews)</span>
+        <span><i class="fas fa-clock"></i> 11:00 – 23:00</span>
+        <span><i class="fas fa-venus-mars"></i> Women‑led</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="menu-header">
+        <div>
+          <h2>Our Pizzas 🍕</h2>
+          <p>Choose your favorite, add to cart, and order via Swiggy/Zomato</p>
+        </div>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+        <!-- Cards will be injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO / ADDRESS -->
+  <section id="info" style="padding: 1rem 0 2rem;">
+    <div class="container">
+      <div style="background: #faf6f1; border-radius: 2rem; padding: 1.5rem 2rem; border: 1px solid #f0e3d8; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+        <div>
+          <i class="fas fa-map-pin" style="color: #a63c1e; margin-right: 0.6rem;"></i>
+          <strong style="font-weight: 600;">GF 22, Arcade, Shivay palace hostel PG Aava county, opp. Sumandeep Vidhyapeeth, Waghodia, Gujarat 391760</strong>
+        </div>
+        <button onclick="window.open('https://maps.app.goo.gl/3BrD6Taa3Kvig7XQ7','_blank')" style="background: white; border: 1px solid #dacfc4; padding: 0.5rem 1.5rem; border-radius: 60px; font-weight: 600; cursor: pointer; color: #a63c1e;">
+          <i class="fas fa-map"></i> Get Directions
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART OVERLAY & SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-bag" style="color: #a63c1e;"></i> Your Order</h3>
+      <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- dynamic -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotalPrice">₹0</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-checkout swiggy" id="swiggyCheckout"><i class="fas fa-bolt"></i> Order via Swiggy</button>
+        <button class="btn-checkout zomato" id="zomatoCheckout"><i class="fas fa-utensils"></i> Order via Zomato</button>
+      </div>
+      <p style="font-size: 0.7rem; color: #7a6b5e; text-align: center; margin-top: 0.6rem;">You will be redirected to complete your order.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand"><i class="fas fa-pizza-slice"></i> Neopolitan Pizza</div>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">Waghodia Road · Vadodara</div>
+      </div>
+      <div class="address">
+        <i class="fas fa-location-dot"></i> GF 22, Arcade, Shivay palace hostel PG Aava county, opp. Sumandeep Vidhyapeeth, Waghodia, Gujarat 391760
+        <div style="margin-top: 0.5rem;"><i class="fas fa-phone"></i> +91 96649 53161</div>
+      </div>
+      <div style="text-align: right;">
+        <div>© 2026 Neopolitan Pizza</div>
+        <div style="font-size: 0.8rem; margin-top: 0.2rem;">Women‑led business</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- External JS -->
+  <script src="assets/app.js"></script>
+</body>
+</html>
+
